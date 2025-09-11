@@ -27,7 +27,14 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 route::get('/produtos', function(){
+
+    $produtos = [
+        ['id' => 1, 'nome' => 'Caneca de Café Programador', 'preco' => 'R$ 35,00'],
+        ['id' => 2, 'nome' => 'Camiseta "It works on my machine"', 'preco' => 'R$ 59,90'],
+        ['id' => 3, 'nome' => 'Adesivo de Notebook (Gatinho com Bug)', 'preco' => 'R$ 9,50'],
+    ];
     return Inertia::render('Produtos/Index',[
-        'mensagem' => 'Olá Mundo. Esta é a minha primeira página com Inertia!'
+        'mensagem' => 'Confira nossa lista de produtos incríveis!',
+        'produtos' => $produtos
     ]);
 })->name('produtos.index');

@@ -4,6 +4,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\MecanicaController;
+use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\MovimentacaoEstoqueController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -38,3 +45,5 @@ route::get('/produtos', function(){
         'produtos' => $produtos
     ]);
 })->name('produtos.index');
+
+Route::resource('produtos', ProdutoController::class);

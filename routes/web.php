@@ -11,15 +11,20 @@ use App\Http\Controllers\MecanicaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\MovimentacaoEstoqueController;
+use App\Http\Controllers\HomeController;
+
+
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+    // return Inertia::render('Welcome'
+    //  [
+    //     'canLogin' => Route::has('login'),
+    //     'canRegister' => Route::has('register'),
+    //     'laravelVersion' => Application::VERSION,
+    //     'phpVersion' => PHP_VERSION,
+    // ]
+// );
+})->name('home');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

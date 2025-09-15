@@ -4,6 +4,10 @@ import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
+    <div v-if="$page.props.flash && $page.props.flash.success" class="fixed top-5 right-5 z-50 bg-green-500 text-white p-4 rounded-lg shadow-lg animate-bounce">
+        {{ $page.props.flash.success }}
+    </div>
+
     <div
         class="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0"
     >

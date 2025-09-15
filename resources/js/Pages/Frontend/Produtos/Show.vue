@@ -1,5 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
+ 
 
 // O componente recebe o objeto 'produto' como prop
 defineProps({
@@ -9,10 +10,7 @@ defineProps({
 
 <template>
 
-    <div v-if="$page.props.flash.success" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded-lg shadow-lg animate-bounce">
-        {{ $page.props.flash.success }}
-    </div>
-
+    
     <Head :title="produto.nome" />
 
     <div class="bg-gray-100 min-h-screen">

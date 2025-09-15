@@ -7,6 +7,8 @@ use Illuminate\Database\Seeder;
 use App\Models\Produto;
 use App\Models\Categoria;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ProdutoSeeder extends Seeder
 {
@@ -15,7 +17,12 @@ class ProdutoSeeder extends Seeder
      */
     public function run(): void
     {
-        Produto::truncate();
+       Schema::disableForeignKeyConstraints();
+
+       DB::table('item_pedidos')->truncate();
+       DB::table('produtos')->truncate();
+
+       Schema::enableForeignKeyConstraints();
 
         // 2. Busca todas as categorias existentes no banco de dados
         $categorias = Categoria::all();

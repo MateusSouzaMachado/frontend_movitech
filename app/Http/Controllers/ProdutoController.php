@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Estoque;
 use App\Models\MovimentacaoEstoque;
+use Inertia\Inertia;
 
 class ProdutoController extends Controller
 {
@@ -46,9 +47,11 @@ class ProdutoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Produto $produto)
     {
-        return Produto::with('estoque')->findOrFail($id);
+           return Inertia::render('Frontend/Produtos/Show', [
+            'produto' => $produto
+        ]);
     }
 
     /**

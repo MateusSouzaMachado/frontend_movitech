@@ -12,19 +12,15 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\MovimentacaoEstoqueController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CarrinhoController;
 
 
 
-Route::get('/', function () {
-    // return Inertia::render('Welcome'
-    //  [
-    //     'canLogin' => Route::has('login'),
-    //     'canRegister' => Route::has('register'),
-    //     'laravelVersion' => Application::VERSION,
-    //     'phpVersion' => PHP_VERSION,
-    // ]
-// );
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/produtos/{produto}', [ProdutoController::class, 'show'])->name('produtos.show');
+
+Route::post('/carrinho/{produto}', [CarrinhoController::class, 'store'])->name('carrinho.store');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -16,7 +16,7 @@ class ProdutoController extends Controller
     public function index()
     {
         return Produto::with('estoque')->get();
-        // return Produto::all();
+        
     }
 
     /**

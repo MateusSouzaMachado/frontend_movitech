@@ -17,10 +17,10 @@ use App\Http\Controllers\CarrinhoController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/produtos/{produto}', [ProdutoController::class, 'show'])->name('produtos.show');
-
 Route::post('/carrinho/{produto}', [CarrinhoController::class, 'store'])->name('carrinho.store');
+Route::get('/carrinho', [CarrinhoController::class, 'index'])->name('carrinho.index');
+Route::delete('/carrinho/{produto}', [CarrinhoController::class, 'destroy'])->name('carrinho.destroy');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -34,17 +34,7 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-route::get('/produtos', function(){
 
-    $produtos = [
-        ['id' => 1, 'nome' => 'Caneca de Café Programador', 'preco' => 'R$ 35,00'],
-        ['id' => 2, 'nome' => 'Camiseta "It works on my machine"', 'preco' => 'R$ 59,90'],
-        ['id' => 3, 'nome' => 'Adesivo de Notebook (Gatinho com Bug)', 'preco' => 'R$ 9,50'],
-    ];
-    return Inertia::render('Produtos/Index',[
-        'mensagem' => 'Confira nossa lista de produtos incríveis!',
-        'produtos' => $produtos
-    ]);
-})->name('produtos.index');
 
-Route::resource('produtos', ProdutoController::class);
+  
+

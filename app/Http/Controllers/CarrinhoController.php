@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use Inertia\Inertia;
 
 class CarrinhoController extends Controller
 {
@@ -33,4 +34,37 @@ class CarrinhoController extends Controller
         //    com uma mensagem de sucesso (flash message)
         return redirect()->back()->with('success', 'Produto adicionado ao carrinho!');
     }
+
+    public function index()
+    {
+        $carrinho = session()->get('carrinho', []);
+
+        // Vamos calcular o total
+        $total = 0;
+        foreach ($carrinho as $item) {
+            $total += $item['preco'] * $item['quantidade'];
+        }
+    
+        return Inertia::render('Frontend/Carrinho/Index', [
+            'carrinho' => $carrinho,
+            'total' => number_format($total, 2, ',', '.') // Formatando para Reais
+        ]);
+    }
+
+    public function destroy(Produto $produto)
+{
+    $carrinho = session()->get('carrinho', []);
+
+    // Verifica se o produto realmente existe no carrinho
+    if (isset($carrinho[$produto->id])) {
+        // Remove o item do array do carrinho
+        unset($carrinho[$produto->id]);
+    }
+
+    // Salva o carrinho atualizado de volta na sessão
+    session()->put('carrinho', $carrinho);
+
+    // Redireciona de volta para a página do carrinho
+    return redirect()->back()->with('success', 'Produto removido do carrinho!');
+}
 }
